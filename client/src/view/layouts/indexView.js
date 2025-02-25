@@ -2,6 +2,7 @@
 import { sidebarView } from "./sidebarView.js";
 import { headerView } from "./headerView.js";
 import { pageHeaderView } from "./pageHeaderView.js";
+import { productFilters } from "./productFilters.js";
 
 export const indexView = () => `
 <div class="layout">
@@ -10,6 +11,9 @@ export const indexView = () => `
     ${headerView()}
     <main class="main-content">
         ${pageHeaderView()}
+        <section class="product-section">
+        ${productFilters()}
+        </section>
     </main>
     </div>
 </div>`;

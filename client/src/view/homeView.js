@@ -8,13 +8,5 @@ export class homeView {
   render() {
     this.app.innerHTML = "";
     this.app.innerHTML = indexView();
-    const showGroupItems = document.querySelectorAll(".nav-item-show-group");
-
-    showGroupItems.forEach((item) => {
-      item.addEventListener("click", (e) => {
-        e.preventDefault();
-        item.classList.toggle("active");
-      });
-    });
   }
 }
