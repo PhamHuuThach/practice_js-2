@@ -30,6 +30,7 @@
         padding: 0;
         color: $text-secondary;
         font-size: 0.875rem;
+        align-items: flex-end;
         @include tablet {
             font-size: 0.8rem;
         }
@@ -44,7 +45,11 @@
         }
         .nav-indicator {
            position: relative;
-           bottom: 2px;
+           bottom: 0px;
+        }
+        .nav-indicator-2 {
+            position: relative;
+            top: 2px;
         }
     }
 }
