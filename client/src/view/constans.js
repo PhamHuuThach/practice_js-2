@@ -37,3 +37,24 @@ export const BREADCRUMB = {
   VALUE1: "Product List",
   VALUE2: "",
 };
+//=========================
+// Thead of product table
+export const TABLE_HEADERS = [
+  { id: 1, title: "Product", hasCheckbox: true, hasSortIndicator: true },
+  { id: 2, title: "SKU", hasSortIndicator: false },
+  { id: 3, title: "Category", hasSortIndicator: false },
+  { id: 4, title: "Stock", hasSortIndicator: true },
+  { id: 5, title: "Price", hasSortIndicator: true },
+  { id: 6, title: "Status", hasSortIndicator: true },
+  { id: 7, title: "Added", hasSortIndicator: true },
+  { id: 8, title: "Action", hasSortIndicator: false },
+];
+export const IMAGE_TABLE = {
+  CHECKBOX_ICON: "brick.svg",
+  SORT_INDICATOR_ICON: "fi-sr-caret-down.svg",
+};
+export const PAGINATION_PAGE = {
+  CURRENT_PAGE: 1,
+  ITEMS_PER_PAGE: 4,
+};
+//=========================

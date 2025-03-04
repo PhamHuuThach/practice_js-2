@@ -1,3 +1,4 @@
+import { TABLE_HEADERS, IMAGE_TABLE, PAGINATION_PAGE } from "../constans";
 const dataProduct = {
   products: [
     {
@@ -111,52 +112,48 @@ const dataProduct = {
       added: "24 Dec 2022",
     },
   ],
-  currentPage: 1,
-  itemsPerPage: 4,
 };
 
 export const table = () => {
-  const startIndex = (dataProduct.currentPage - 1) * dataProduct.itemsPerPage;
-  const endIndex = startIndex + dataProduct.itemsPerPage;
+  const startIndex =
+    (PAGINATION_PAGE.CURRENT_PAGE - 1) * PAGINATION_PAGE.ITEMS_PER_PAGE;
+  const endIndex = startIndex + PAGINATION_PAGE.ITEMS_PER_PAGE;
   const displayedProducts = dataProduct.products.slice(startIndex, endIndex);
 
   return `
-      <div class="product-table-container">
-          <table class="product-table">
+      <div class="table-container">
+          <table class="table">
                  <thead>
                     <tr>
-                        <th class="title-column column-1">
-                        <div class="checkbox-cell-1">
-                         <figure class="checkbox-cell">
-                                <img class="checkbox-icon" src="assets/icons/brick.svg" alt="brick.svg">
-                          </figure>
-                          <span>Product</span>
-                        </div>
-                            <img class="nav-indicator" src="assets/icons/fi-sr-caret-down.svg" alt="fi-sr-caret-down.svg">
-                            </th>
-                        <th class="title-column column-2">SKU</th>
-                        <th class="title-column column-3">Category</th>
-                        <th class="title-column column-4">
-                            Stock
-                            <img class="nav-indicator" src="assets/icons/fi-sr-caret-down.svg" alt="fi-sr-caret-down.svg">
+                      ${TABLE_HEADERS.map(
+                        (header) => `
+                        <th class="title-column column-${header.id}">
+                          ${
+                            header.hasCheckbox
+                              ? `
+                            <div class="checkbox-cell-1">
+                              <figure class="checkbox-cell">
+                                <img class="checkbox-icon" src="assets/icons/${IMAGE_TABLE.CHECKBOX_ICON}" alt="${IMAGE_TABLE.CHECKBOX_ICON}">
+                              </figure>
+                              <span>${header.title}</span>
+                            </div>
+                          `
+                              : `
+                            <span>${header.title}</span>
+                          `
+                          }
+                          ${
+                            header.hasSortIndicator
+                              ? `
+                            <img class="nav-indicator" src="assets/icons/${IMAGE_TABLE.SORT_INDICATOR_ICON}" alt="${IMAGE_TABLE.SORT_INDICATOR_ICON}">
+                          `
+                              : ""
+                          }
                         </th>
-                        <th class="title-column column-5">
-                            Price
-                            <img class="nav-indicator" src="assets/icons/fi-sr-caret-down.svg" alt="fi-sr-caret-down.svg">
-                        </th>
-                        <th class="title-column column-6">
-                            Status
-                            <img class="nav-indicator" src="assets/icons/fi-sr-caret-down.svg" alt="fi-sr-caret-down.svg">
-                        </th>
-                        <th class="title-column column-7">
-                            Added
-                            <img class="nav-indicator" src="assets/icons/fi-sr-caret-down.svg" alt="fi-sr-caret-down.svg">
-                        </th>
-                        <th class="title-column column-8">
-                            Action
-                        </th>
+                      `
+                      ).join("")}
                     </tr>
-                </thead>
+                  </thead>
               <tbody>
                   ${displayedProducts
                     .map(
@@ -226,10 +223,13 @@ export const table = () => {
 
 function renderPagination(data) {
   const totalItems = data.products.length;
-  const totalPages = Math.ceil(totalItems / data.itemsPerPage);
-  const currentPage = data.currentPage;
-  const startIndex = (currentPage - 1) * data.itemsPerPage + 1;
-  const endIndex = Math.min(currentPage * data.itemsPerPage, totalItems);
+  const totalPages = Math.ceil(totalItems / PAGINATION_PAGE.ITEMS_PER_PAGE);
+  const currentPage = PAGINATION_PAGE.CURRENT_PAGE;
+  const startIndex = (currentPage - 1) * PAGINATION_PAGE.ITEMS_PER_PAGE + 1;
+  const endIndex = Math.min(
+    currentPage * PAGINATION_PAGE.ITEMS_PER_PAGE,
+    totalItems
+  );
 
   let pageButtons = "";
   for (let i = 1; i <= totalPages; i++) {
@@ -270,19 +270,22 @@ function handlePaginationClick(event) {
   if (target.classList.contains("pagination-btn")) {
     const page = target.dataset.page;
     if (page === "prev") {
-      dataProduct.currentPage = Math.max(1, dataProduct.currentPage - 1);
+      PAGINATION_PAGE.CURRENT_PAGE = Math.max(
+        1,
+        PAGINATION_PAGE.CURRENT_PAGE - 1
+      );
     } else if (page === "next") {
       const totalPages = Math.ceil(
-        dataProduct.products.length / dataProduct.itemsPerPage
+        dataProduct.products.length / PAGINATION_PAGE.ITEMS_PER_PAGE
       );
-      dataProduct.currentPage = Math.min(
+      PAGINATION_PAGE.CURRENT_PAGE = Math.min(
         totalPages,
-        dataProduct.currentPage + 1
+        PAGINATION_PAGE.CURRENT_PAGE + 1
       );
     } else {
-      dataProduct.currentPage = parseInt(page);
+      PAGINATION_PAGE.CURRENT_PAGE = parseInt(page);
     }
-    const tableContainer = document.querySelector(".product-table-container");
+    const tableContainer = document.querySelector(".table-container");
     tableContainer.innerHTML = table();
     attachPaginationListeners();
   }
@@ -292,7 +295,7 @@ function attachPaginationListeners() {
   paginationContainer.addEventListener("click", handlePaginationClick);
 }
 document.addEventListener("DOMContentLoaded", () => {
-  const tableContainer = document.querySelector(".product-table-container");
+  const tableContainer = document.querySelector(".table-container");
   if (tableContainer) {
     tableContainer.innerHTML = table();
     attachPaginationListeners();
