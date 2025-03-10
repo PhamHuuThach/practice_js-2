@@ -1,0 +1,210 @@
+@use "../base/" as *;
+@use "../abstracts/" as *;
+.product-form-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .product-form-left {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .product-form-right {
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  // Form Sections
+  .form-section {
+    background: $background-primary;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+  
+    .section-title {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: $text-primary;
+      margin-bottom: 1.5rem;
+    }
+  
+    .status-badge {
+      padding: 0.25rem 0.75rem;
+      background: rgba($text-secondary, 0.1);
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      color: $text-secondary;
+    }
+  }
+  
+  // Form Groups
+  .form-group {
+    margin-bottom: 1.25rem;
+  
+    &:last-child {
+      margin-bottom: 0;
+    }
+  
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: $text-secondary;
+      font-size: 0.875rem;
+    }
+  }
+  
+  .form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+ 
+  // Form Controls
+  .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid $border-light;
+    border-radius: 0.5rem;
+    background: $background-primary;
+    color: $text-primary;
+    font-size: 0.875rem;
+    transition: border-color 0.2s ease;
+  
+    &:focus {
+      outline: none;
+      border-color: $primary;
+    }
+  
+    &::placeholder {
+      color: rgba($text-secondary, 0.7);
+    }
+  }
+  
+  textarea.form-control {
+    resize: vertical;
+    min-height: 175px;
+  }
+  
+  // Input with prefix
+  .input-wrapper {
+    position: relative;
+    
+    &.has-prefix {
+      .form-control {
+        padding-left: 2rem;
+      }
+      
+      .input-prefix {
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $text-secondary;
+      }
+    }
+  }
+  
+  // Select dropdown
+  .select-wrapper {
+    position: relative;
+    
+    .select-arrow {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      pointer-events: none;
+    }
+    
+    select {
+      appearance: none;
+      padding-right: 2.5rem;
+    }
+  }
+  
+  // Media upload
+  .upload-area {
+    border: 2px dashed $border-light;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  
+    &:hover {
+      border-color: $primary;
+    }
+    .upload-image {
+      background: $background-lightSlateBlue;
+      border-radius: 0.5rem;
+      min-width: 40px;
+      min-height: 32px;
+      .upload-icon {
+        
+        margin: 10px auto;
+        color: $primary;
+      }
+    }
+   
+  
+    p {
+      color: $text-secondary;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+    }
+  
+    .add-image-btn {
+      background-color: rgba($primary, 0.1);
+      color: $primary;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      cursor: pointer;
+      font-size: 0.875rem;
+      
+      &:hover {
+        background-color: rgba($primary, 0.2);
+      }
+    }
+  }
+  
+  // Responsive
+  @media (max-width: 1024px) {
+    .product-form-container {
+      flex-direction: column-reverse;
+    }
+    
+    .product-form-right {
+      width: 100%;
+    }
+  }
+  
+ @include tablet {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }

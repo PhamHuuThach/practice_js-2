@@ -254,13 +254,13 @@ function renderPagination(data) {
           <button class="pagination-btn" data-page="prev" ${
             currentPage === 1 ? "disabled" : ""
           }>
-              <img class="nav-indicator" src="assets/icons/fi-rr-caret-left.svg" alt="fi-rr-caret-left.svg">
+              <img class="nav-indicator" src="/assets/icons/fi-rr-caret-left.svg" alt="fi-rr-caret-left.svg">
           </button>
           ${pageButtons}
           <button class="pagination-btn" data-page="next" ${
             currentPage === totalPages ? "disabled" : ""
           }>
-              <img class="nav-indicator" src="assets/icons/fi-sr-caret-right.svg" alt="fi-sr-caret-right.svg">
+              <img class="nav-indicator" src="/assets/icons/fi-sr-caret-right.svg" alt="fi-sr-caret-right.svg">
           </button>
       </div>
     `;
@@ -290,14 +290,7 @@ function handlePaginationClick(event) {
     attachPaginationListeners();
   }
 }
-function attachPaginationListeners() {
+export function attachPaginationListeners() {
   const paginationContainer = document.querySelector(".pagination-container");
   paginationContainer.addEventListener("click", handlePaginationClick);
 }
-document.addEventListener("DOMContentLoaded", () => {
-  const tableContainer = document.querySelector(".table-container");
-  if (tableContainer) {
-    tableContainer.innerHTML = table();
-    attachPaginationListeners();
-  }
-});

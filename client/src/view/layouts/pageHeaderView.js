@@ -1,7 +1,6 @@
-import { BUTTON_ACTION, BREADCRUMB } from "../constans";
 import { buttonAction } from "../components/buttonAction";
 import { breadCrumb } from "../components/breadCrumb";
-export const pageHeaderView = () =>
+export const pageHeaderView = (BREADCRUMB, BUTTON_ACTION) =>
   `<section class="page-header">
      <div class="page-title">
         <h2>Product</h2>
