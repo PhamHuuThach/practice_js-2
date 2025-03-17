@@ -1,0 +1,70 @@
+@use "../base/" as *;
+@use "../abstracts/" as *;
+
+.page-actions {
+    @include tablet {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+    }
+    .btn {
+        margin: 0.5rem 0.5rem 0rem 0rem;
+        padding: 0.5rem 1rem;
+        border-radius: 5%;
+        border-style: hidden;
+        font-family: Public Sans;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 20px;
+        letter-spacing: 0.5%;
+        @include tablet {
+            padding: 0.5rem ;
+            width: 120px;
+            margin: 0;
+            font-size: 14px;
+            padding: 0.4rem 0.8rem;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 15px;
+            letter-spacing: 0.2%;
+        }
+        .btn-icon {
+            position: relative;
+            top: 2px;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.5rem;
+            @include tablet {
+                width: 14px;
+                height: 14px;
+            }
+        }
+    }
+    .btn-export, .btn-add {
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+            transition: transform 0.2s ease;
+        }
+
+        @include tablet {
+            flex: 1;
+            text-align: center;
+            
+            &:first-child {
+                margin-right: 0.5rem;
+            }
+        }  
+    }
+    .btn-add{
+        background-color: $background-lightSlateBlue;
+        a{ 
+        color: $background-primary;
+        }
+        
+    }
+    .btn-export  {
+        background-color: $info;
+        color: $background-lightSlateBlue;
+    }
+}
