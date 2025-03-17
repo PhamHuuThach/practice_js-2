@@ -3,6 +3,7 @@ import { manageController } from "./controller/manageController.js";
 import { Router } from "./routes/routes.js";
 import { productView } from "./view/pages/productView.js";
 import { addProductView } from "./view/pages/addProductView.js";
+import { categoriesView } from "./view/pages/categoriesView.js";
 
 // Định nghĩa các route
 const router = [
@@ -19,6 +20,11 @@ const router = [
   {
     path: "/product/addProduct",
     controller: new manageController(new addProductView()),
+    target: "#mainContent",
+  },
+  {
+    path: "/category",
+    controller: new manageController(new categoriesView()),
     target: "#mainContent",
   },
 ];

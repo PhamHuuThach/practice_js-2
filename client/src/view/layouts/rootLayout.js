@@ -3,7 +3,7 @@ import { sidebarView } from "./sidebarView.js";
 import { headerView } from "./headerView.js";
 import { SIDEBAR_DATA } from "../constans.js";
 
-export const indexView = () => `
+export const layoutView = () => `
 <div class="layout">
     ${sidebarView(SIDEBAR_DATA)}
     <div class="main-wrapper">

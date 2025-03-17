@@ -1,6 +1,5 @@
 import { search } from "../components/search";
-import { SEARCH_DATA_PRODUCT } from "../constans";
-export const productFilters = () => `
+export const productFilters = (SEARCH_DATA) => `
 <div class="product-filters">
     <nav class="tabs" role="tablist" aria-label="Product filters">
         <button role="tab" aria-selected="true" class="tab active">
@@ -17,9 +16,9 @@ export const productFilters = () => `
         </button>
     </nav>
      ${search(
-       SEARCH_DATA_PRODUCT.CLASSSEARCH,
-       SEARCH_DATA_PRODUCT.CLASSINPUT,
-       SEARCH_DATA_PRODUCT.PLACEHOLDER,
-       SEARCH_DATA_PRODUCT.ARIALABEL
+       SEARCH_DATA.CLASSSEARCH,
+       SEARCH_DATA.CLASSINPUT,
+       SEARCH_DATA.PLACEHOLDER,
+       SEARCH_DATA.ARIALABEL
      )}
 </div>`;

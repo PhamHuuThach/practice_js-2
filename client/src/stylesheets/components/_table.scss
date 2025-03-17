@@ -3,21 +3,25 @@
 
 .table-container {
     border-radius: 8px;
-    box-shadow: 0px -20px 3px $background-secondary;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    margin-top:1rem;
+    margin-top: 1rem;
+    background-color: $background-primary;
 }
+
 .table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
     background: $background-primary;
+
     th, td {
         padding: 1rem;
         text-align: left;
         border-bottom: 1px solid $border-light;
-        transition: background-color 0.2s ease;
+        vertical-align: middle;
     }
+
     th {
         color: $text-dark;
         font-weight: 500;
@@ -28,158 +32,181 @@
         background: transparent;
         position: relative;
         padding: 1rem 1.5rem 1rem 1rem; 
+
         &:first-child {
             padding-left: 1.5rem;
-            width: 48px;
         }
+
         &.title-column {
             position: relative;
             padding-right: 2rem; 
+            
             .nav-indicator {
                 position: absolute;
                 right: 0.75rem;
                 top: 50%;
                 transform: translateY(-50%);
-                width: 20px;
-                height: 20px;
+                width: 16px;
+                height: 16px;
                 opacity: 0.5;
                 transition: opacity 0.2s ease;
             }
+            
             &:hover .nav-indicator {
                 opacity: 1;
             }
         }
     }
+
     td {
         padding: 1rem 1.5rem 1rem 1rem;
         font-size: 0.875rem;
         color: $text-primary;
+        
         &:first-child {
             padding-left: 1.5rem;
         }
-        &:hover {
-            background-color: $background-tertiary;
-        }
     }
-    tr:hover {
-        td {
-            background-color: $background-tertiary;
-        }
+
+    tr:hover td {
+        background-color: $background-tertiary;
     }
-    .checkbox-cell-1 {
-        display: flex;
-        justify-content: start;
-        gap: 0.5rem;
+}
+.checkbox-cell-1 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.checkbox-cell {
+    margin: 0;
+    width: 20px;
+    height: 20px;
+    background: $background-lightSlateBlue;
+    border: 2px solid $border-checkbox;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .checkbox-icon {
+        width: 14px;
+        height: 14px;
     }
-    .checkbox-cell {
-        margin: 0rem 0rem 0rem 0.3rem;
-        width: 20px;
-        height: 20px;
+}
+.checkbox-id {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 2px solid $border-checkbox;
+    appearance: none;
+    cursor: pointer;
+    background: $background-primary;
+    position: relative;
+    margin: 0;
+    &:checked {
         background: $background-lightSlateBlue;
-        border-radius: 6px;
-        border: 2px solid $background-lightSlateBlue;
-        .checkbox-icon {
-            padding-bottom: 0.35rem;
-            padding-left: 0.1rem ;
+        border-color: $background-lightSlateBlue;
+        &::after {
+            content: "✓";
+            position: absolute;
+            color: $background-primary;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     }
 }
-.column-1 { width: 250px; }
-.column-2 { width: 120px; }
-.column-3 { width: 150px; }
-.column-4 { width: 100px; }
-.column-5 { width: 120px; }
-.column-6 { width: 120px; }
-.column-7 { width: 150px; }
-.column-8 { width: 120px; }
+
+/* Product info styles */
 .product-cell {
     .product-info {
         display: flex;
         align-items: center;
         gap: 1rem;
+
         .product-image {
             width: 40px;
             height: 40px;
-            border-radius: 4px;
+            border-radius: 8px;
             object-fit: cover;
         }
+
         .product-name {
             font-weight: 500;
             color: $text-primary;
             margin-bottom: 0.25rem;
         }
+
         .product-variants {
             font-size: 0.75rem;
             color: $text-secondary;
         }
-        .checkbox-id {
-            width: 20px;
-            height: 20px;
-            border-radius: 6px;
-            border: 2px solid $border-checkbox;
-            appearance: none; 
-            cursor: pointer;
-            background: $background-primary;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            &:checked {
-                background: $background-lightSlateBlue;
-                border-color: $background-lightSlateBlue;
-            }
-            &:checked::after {
-                content: "✓";
-                font-size: 14px;
-                color: $background-primary; 
-                position: absolute;
-            }
-        }
     }
 }
+
+/* Badge styles */
 .badge {
     display: inline-block;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0.75rem;
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 500;
     text-transform: capitalize;
+
     &-published {
         background-color: rgba($success, 0.1);
         color: $success;
     }
+
     &-draft {
         background-color: rgba($warning, 0.1);
         color: $warning;
     }
+
     &-low-stock {
         background-color: rgba($danger, 0.1);
         color: $danger;
     }
+
     &-out-of-stock {
         background-color: rgba($text-secondary, 0.1);
         color: $text-secondary;
     }
 }
+
+/* Action buttons */
 .action-buttons {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+
     .btn-icon {
         background: none;
         border: none;
-        padding: 0.25rem;
-        border-radius: 4px;
-        transition: background-color 0.2s ease;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+
         &:hover {
-            scale: 1.51;
             background-color: $background-lightSlateBlue;
         }
+
         img {
             width: 16px;
             height: 16px;
+            opacity: 0.7;
+        }
+
+        &:hover img {
+            opacity: 1;
         }
     }
 }
+
+/* Pagination styles */
 .pagination-container {
     display: flex;
     justify-content: space-between;
@@ -187,13 +214,16 @@
     padding: 1rem 1.5rem;
     border-top: 1px solid $border-light;
 }
+
 .pagination-info {
     font-size: 0.875rem;
     color: $text-secondary;
 }
+
 .pagination {
     display: flex;
     gap: 0.25rem;
+
     .pagination-btn {
         background: none;
         border: 1px solid $border-light;
@@ -203,19 +233,23 @@
         border-radius: 4px;
         cursor: pointer;
         transition: all 0.2s ease;
+
         &:hover:not(:disabled) {
             background-color: $background-tertiary;
         }
+
         &.active {
             background-color: $background-lightSlateBlue;
             color: $background-primary;
             border-color: $primary;
         }
+
         &:disabled {
             opacity: 0.5;
             cursor: not-allowed;
         }
     }
+
     .pagination-ellipsis {
         display: flex;
         align-items: center;
@@ -223,18 +257,21 @@
         color: $text-secondary;
     }
 }
+
+/* Responsive styles */
 @include tablet {
-    .product-table-container {
+    .table-container {
         overflow-x: auto;
     }
+
     .table {
-        min-width: 800px; 
-        th, td {
-            padding: 0.75rem;
-        }
-    }
-    .pagination-container {
-        flex-direction: row;
-        gap: 1rem;
+        min-width: 800px;
     }
 }
+
+@include mobile {
+    .table {
+        min-width: 600px;
+    }
+}
+
