@@ -4,6 +4,7 @@ import { Router } from "./routes/routes.js";
 import { productView } from "./view/pages/productView.js";
 import { addProductView } from "./view/pages/addProductView.js";
 import { categoriesView } from "./view/pages/categoriesView.js";
+import { addCategoriesView } from "./view/pages/addCategoriesView.js";
 
 // Định nghĩa các route
 const router = [
@@ -25,6 +26,11 @@ const router = [
   {
     path: "/category",
     controller: new manageController(new categoriesView()),
+    target: "#mainContent",
+  },
+  {
+    path: "/category/addCategory",
+    controller: new manageController(new addCategoriesView()),
     target: "#mainContent",
   },
 ];
