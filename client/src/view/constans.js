@@ -64,10 +64,10 @@ export const PAGE_HEADER_ADD_PRODUCT = {
       CLASSBUTTON: "btn btn-add",
       TYPE: "button",
       CLASSICON: "btn-icon",
-      ICONNAME: "fi-sr-disk",
-      ALT: "fi-sr-disk",
-      VALUE: "Save Product",
-      HREF: "saveProduct",
+      ICONNAME: "add-ic",
+      ALT: "add-ic",
+      VALUE: "Add Product",
+      HREF: "addProduct",
     },
   ],
   BREADCRUMB_ADD_PRODUCT: {
@@ -232,7 +232,7 @@ export const PAGE_HEADER_CATEGORY = {
       ICONNAME: "add-ic",
       ALT: "add-ic",
       VALUE: "Add Categories",
-      HREF: "category/adđCategory",
+      HREF: "category/addCategory",
     },
   ],
   BREADCRUMB_CATEGORY: {
@@ -240,6 +240,36 @@ export const PAGE_HEADER_CATEGORY = {
     ICONNAME2: "",
     VALUE1: "Category List",
     VALUE2: "",
+  },
+};
+//=========================
+export const PAGE_HEADER_ADD_CATEGORY = {
+  TITLE: "Add Category",
+  BUTTON_ACTION_ADD_CATEGORY: [
+    {
+      CLASSBUTTON: "btn btn-export",
+      TYPE: "button",
+      CLASSICON: "btn-icon",
+      ICONNAME: "cancel",
+      ALT: "cancel",
+      VALUE: "Cancel",
+      HREF: "category",
+    },
+    {
+      CLASSBUTTON: "btn btn-add",
+      TYPE: "button",
+      CLASSICON: "btn-icon",
+      ICONNAME: "add-ic",
+      ALT: "add-ic",
+      VALUE: "Add Category",
+      HREF: "addCategory",
+    },
+  ],
+  BREADCRUMB_ADD_CATEGORY: {
+    ICONNAME1: "fi-sr-caret-right.svg",
+    ICONNAME2: "fi-sr-caret-right.svg",
+    VALUE1: "Category List",
+    VALUE2: "Add Category",
   },
 };
 // Categories Table Headers
@@ -431,142 +461,6 @@ export const SIDEBAR_DATA = [
 ];
 //=========================
 //Add Product
-// constants.js
-// export const FORM_SECTIONS = {
-//   GENERAL_INFORMATION: {
-//     TITLE: "General Information",
-//     FIELDS: [
-//       {
-//         ID: "productName",
-//         LABEL: "Product Name",
-//         TYPE: "text",
-//         PLACEHOLDER: "Type product name here...",
-//       },
-//       {
-//         ID: "description",
-//         LABEL: "Description",
-//         TYPE: "textarea",
-//         PLACEHOLDER: "Type product description here...",
-//         ROWS: 5,
-//       },
-//     ],
-//   },
-//   MEDIA: {
-//     TITLE: "Media",
-//     FIELDS: [
-//       {
-//         ID: "photo",
-//         LABEL: "Photo",
-//         TYPE: "file",
-//         ICON_SRC: "/assets/icons/fi-sr-picture.svg",
-//       },
-//     ],
-//   },
-//   PRICING: {
-//     TITLE: "Pricing",
-//     FIELDS: [
-//       {
-//         ID: "basePrice",
-//         LABEL: "Base Price",
-//         TYPE: "text",
-//         PLACEHOLDER: "Type base price here...",
-//         PREFIX: "$",
-//       },
-//       {
-//         ID: "discountType",
-//         LABEL: "Discount Type",
-//         TYPE: "select",
-//         PLACEHOLDER: "Select a discount type",
-//         OPTIONS: [
-//           { VALUE: "percentage", LABEL: "Percentage" },
-//           { VALUE: "fixed", LABEL: "Fixed Amount" },
-//           { VALUE: "none", LABEL: "No Discount" },
-//         ],
-//       },
-//       {
-//         ID: "discountPercentage",
-//         LABEL: "Discount Percentage (%)",
-//         TYPE: "text",
-//         PLACEHOLDER: "Type discount percentage...",
-//       },
-//       {
-//         ID: "taxClass",
-//         LABEL: "Tax Class",
-//         TYPE: "select",
-//         PLACEHOLDER: "Select a tax class",
-//         OPTIONS: [
-//           { VALUE: "standard", LABEL: "Standard Rate" },
-//           { VALUE: "reduced", LABEL: "Reduced Rate" },
-//           { VALUE: "zero", LABEL: "Zero Rate" },
-//         ],
-//       },
-//       {
-//         ID: "vatAmount",
-//         LABEL: "VAT Amount (%)",
-//         TYPE: "text",
-//         PLACEHOLDER: "Type VAT amount...",
-//       },
-//     ],
-//   },
-//   INVENTORY: {
-//     TITLE: "Inventory",
-//     FIELDS: [
-//       {
-//         ID: "sku",
-//         LABEL: "SKU",
-//         TYPE: "text",
-//         PLACEHOLDER: "Type product SKU here...",
-//       },
-//       {
-//         ID: "barcode",
-//         LABEL: "Barcode",
-//         TYPE: "text",
-//         PLACEHOLDER: "Product barcode...",
-//       },
-//       {
-//         ID: "quantity",
-//         LABEL: "Quantity",
-//         TYPE: "text",
-//         PLACEHOLDER: "Type product quantity here...",
-//       },
-//     ],
-//   },
-//   CATEGORY: {
-//     TITLE: "Category",
-//     FIELDS: [
-//       {
-//         ID: "productCategory",
-//         LABEL: "Product Category",
-//         TYPE: "select",
-//         PLACEHOLDER: "Select a product category",
-//         OPTIONS: [
-//           { VALUE: "electronics", LABEL: "Electronics" },
-//           { VALUE: "clothing", LABEL: "Clothing" },
-//           { VALUE: "food", LABEL: "Food & Beverages" },
-//           { VALUE: "furniture", LABEL: "Furniture" },
-//           { VALUE: "beauty", LABEL: "Beauty & Personal Care" },
-//         ],
-//       },
-//     ],
-//   },
-//   STATUS: {
-//     TITLE: "Status",
-//     BADGE: "Draft",
-//     FIELDS: [
-//       {
-//         ID: "productStatus",
-//         LABEL: "Product Status",
-//         TYPE: "select",
-//         PLACEHOLDER: "Select product status",
-//         OPTIONS: [
-//           { VALUE: "draft", LABEL: "Draft" },
-//           { VALUE: "published", LABEL: "Published" },
-//           { VALUE: "archived", LABEL: "Archived" },
-//         ],
-//       },
-//     ],
-//   },
-// };
 export const FORM_SECTIONS = {
   GENERAL_INFORMATION: {
     TITLE: "General Information",
