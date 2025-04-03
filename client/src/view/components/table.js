@@ -1,228 +1,185 @@
-import { TABLE_HEADERS, IMAGE_TABLE, PAGINATION_PAGE } from "../constans";
-const dataProduct = {
-  products: [
-    {
-      id: "302011",
-      name: "Smartwatch E2",
-      variants: "2 Variants",
-      image: "assets/img/Logo.png",
-      category: "Watch",
-      stock: 204,
-      price: 590.0,
-      status: "Published",
-      added: "24 Dec 2022",
-    },
-    {
-      id: "302011",
-      name: "Smartwatch E2",
-      variants: "2 Variants",
-      image: "assets/img/Logo.png",
-      category: "Watch",
-      stock: 204,
-      price: 590.0,
-      status: "Published",
-      added: "24 Dec 2022",
-    },
-    {
-      id: "302011",
-      name: "Smartwatch E2",
-      variants: "2 Variants",
-      image: "assets/img/Logo.png",
-      category: "Watch",
-      stock: 204,
-      price: 590.0,
-      status: "Published",
-      added: "24 Dec 2022",
-    },
-    {
-      id: "302011",
-      name: "Smartwatch E2",
-      variants: "2 Variants",
-      image: "assets/img/Logo.png",
-      category: "Watch",
-      stock: 204,
-      price: 590.0,
-      status: "Published",
-      added: "24 Dec 2022",
-    },
-    {
-      id: "302011",
-      name: "Smartwatch E2",
-      variants: "2 Variants",
-      image: "assets/img/Logo.png",
-      category: "Watch",
-      stock: 204,
-      price: 590.0,
-      status: "Published",
-      added: "24 Dec 2022",
-    },
-    {
-      id: "302011",
-      name: "Smartwatch E2",
-      variants: "2 Variants",
-      image: "assets/img/Logo.png",
-      category: "Watch",
-      stock: 204,
-      price: 590.0,
-      status: "Published",
-      added: "24 Dec 2022",
-    },
-    {
-      id: "302011",
-      name: "Smartwatch E2",
-      variants: "2 Variants",
-      image: "assets/img/Logo.png",
-      category: "Watch",
-      stock: 204,
-      price: 590.0,
-      status: "Published",
-      added: "24 Dec 2022",
-    },
-    {
-      id: "302011",
-      name: "Smartwatch E2",
-      variants: "2 Variants",
-      image: "assets/img/Logo.png",
-      category: "Watch",
-      stock: 204,
-      price: 590.0,
-      status: "Published",
-      added: "24 Dec 2022",
-    },
-    {
-      id: "302011",
-      name: "Smartwatch E2",
-      variants: "2 Variants",
-      image: "assets/img/Logo.png",
-      category: "Watch",
-      stock: 204,
-      price: 590.0,
-      status: "Published",
-      added: "24 Dec 2022",
-    },
-    {
-      id: "302011",
-      name: "Smartwatch E2",
-      variants: "2 Variants",
-      image: "assets/img/Logo.png",
-      category: "Watch",
-      stock: 204,
-      price: 590.0,
-      status: "Published",
-      added: "24 Dec 2022",
-    },
-  ],
-};
-
-export const table = () => {
+// Định nghĩa hàm table trong file này
+export const table = (
+  TABLE_HEADERS,
+  IMAGE_TABLE,
+  PAGINATION_PAGE,
+  data,
+  dataType = "product"
+) => {
   const startIndex =
     (PAGINATION_PAGE.CURRENT_PAGE - 1) * PAGINATION_PAGE.ITEMS_PER_PAGE;
   const endIndex = startIndex + PAGINATION_PAGE.ITEMS_PER_PAGE;
-  const displayedProducts = dataProduct.products.slice(startIndex, endIndex);
+
+  // Sử dụng trực tiếp mảng data thay vì data.products hoặc data.categories
+  const displayedItems = data.slice(startIndex, endIndex);
+
+  // Xác định loại dữ liệu để render đúng cấu trúc
+  const isProductData = dataType === "product";
 
   return `
-      <div class="table-container">
-          <table class="table">
-                 <thead>
-                    <tr>
-                      ${TABLE_HEADERS.map(
-                        (header) => `
-                        <th class="title-column column-${header.id}">
-                          ${
-                            header.hasCheckbox
-                              ? `
-                            <div class="checkbox-cell-1">
-                              <figure class="checkbox-cell">
-                                <img class="checkbox-icon" src="assets/icons/${IMAGE_TABLE.CHECKBOX_ICON}" alt="${IMAGE_TABLE.CHECKBOX_ICON}">
-                              </figure>
-                              <span>${header.title}</span>
-                            </div>
-                          `
-                              : `
-                            <span>${header.title}</span>
-                          `
-                          }
-                          ${
-                            header.hasSortIndicator
-                              ? `
-                            <img class="nav-indicator" src="assets/icons/${IMAGE_TABLE.SORT_INDICATOR_ICON}" alt="${IMAGE_TABLE.SORT_INDICATOR_ICON}">
-                          `
-                              : ""
-                          }
-                        </th>
-                      `
-                      ).join("")}
-                    </tr>
-                  </thead>
-              <tbody>
-                  ${displayedProducts
-                    .map(
-                      (product) => `
-                      <tr>
-                          <td class="product-cell">
-                              <div class="product-info">
-                              <input class="checkbox-id" type="checkbox" class="select-item" data-id="${
-                                product.id
-                              }">
-                                  <img src="${product.image}" alt="${
-                        product.name
-                      }" class="product-image">
-                                  <div>
-                                      <div class="product-name">${
-                                        product.name
-                                      }</div>
-                                      <div class="product-variants">${
-                                        product.variants
-                                      }</div>
-                                  </div>
-                              </div>
-                          </td>
-                          <td>${product.id}</td>
-                          <td>${product.category}</td>
-                          <td>${product.stock}</td>
-                          <td>$${product.price.toFixed(2)}</td>
-                          <td>
-                              <span class="badge badge-${product.status
-                                .toLowerCase()
-                                .replace(" ", "-")}">
-                                  ${product.status}
-                              </span>
-                          </td>
-                          <td>${product.added}</td>
-                          <td>
-                              <div class="action-buttons">
-                                  <button class="btn-icon" data-action="edit" data-id="${
-                                    product.id
-                                  }">
-                                      <img src="assets/icons/fi-sr-pencil.svg" alt="fi-sr-pencil.svg">
-                                  </button>
-                                  <button class="btn-icon" data-action="view" data-id="${
-                                    product.id
-                                  }">
-                                      <img src="assets/icons/fi-sr-eye.svg" alt="fi-sr-trash.svg">
-                                  </button>
-                                  <button class="btn-icon" data-action="delete" data-id="${
-                                    product.id
-                                  }">
-                                      <img src="assets/icons/fi-sr-trash.svg" alt="fi-sr-trash.svg">
-                                  </button>
-                              </div>
-                          </td>
-                      </tr>
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            ${TABLE_HEADERS.map((header, index) => {
+              // Xử lý cột đầu tiên với checkbox
+              if (index === 0 && header.hasCheckbox) {
+                return `
+                  <th class="title-column column-${index + 1}">
+                    <div class="checkbox-cell-1">
+                      <figure class="checkbox-cell">
+                        <img class="checkbox-icon" src="assets/icons/brick.svg" alt="brick.svg">
+                      </figure>
+                      <span>${header.title}</span>
+                    </div>
+                    ${
+                      header.hasSortIndicator
+                        ? `
+                      <img class="nav-indicator" src="assets/icons/${IMAGE_TABLE.SORT_INDICATOR_ICON}" alt="${IMAGE_TABLE.SORT_INDICATOR_ICON}">
+                    `
+                        : ""
+                    }
+                  </th>
+                `;
+              }
+
+              // Các cột khác
+              return `
+                <th class="title-column column-${index + 1}">
+                  <span>${header.title}</span>
+                  ${
+                    header.hasSortIndicator
+                      ? `
+                    <img class="nav-indicator" src="assets/icons/${IMAGE_TABLE.SORT_INDICATOR_ICON}" alt="${IMAGE_TABLE.SORT_INDICATOR_ICON}">
                   `
-                    )
-                    .join("")}
-              </tbody>
-          </table>
-          <div class="pagination-container">
-              ${renderPagination(dataProduct)}
-          </div>
+                      : ""
+                  }
+                </th>
+              `;
+            }).join("")}
+          </tr>
+        </thead>
+        <tbody>
+          ${displayedItems
+            .map((item) => {
+              if (isProductData) {
+                // Render product row
+                return `
+                  <tr>
+                    <td class="product-cell">
+                      <div class="product-info">
+                        <input class="checkbox-id" type="checkbox" data-id="${
+                          item.id
+                        }">
+                        <img src="${item.image}" alt="${
+                  item.name
+                }" class="product-image">
+                        <div>
+                          <div class="product-name">${item.name}</div>
+                          <div class="product-variants">${
+                            item.variants || ""
+                          }</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>${item.id}</td>
+                    <td>${item.category}</td>
+                    <td>${item.stock}</td>
+                    <td>$${
+                      typeof item.price === "number"
+                        ? item.price.toFixed(2)
+                        : item.price
+                    }</td>
+                    <td>
+                      <span class="badge badge-${
+                        item.status
+                          ? item.status.toLowerCase().replace(/\s+/g, "-")
+                          : "default"
+                      }">
+                        ${item.status || "N/A"}
+                      </span>
+                    </td>
+                    <td>${item.added}</td>
+                    <td>
+                      <div class="action-buttons">
+                        <button class="btn-icon" data-action="edit" data-id="${
+                          item.id
+                        }">
+                          <img src="assets/icons/fi-sr-pencil.svg" alt="Edit">
+                        </button>
+                        <button class="btn-icon" data-action="view" data-id="${
+                          item.id
+                        }">
+                          <img src="assets/icons/fi-sr-eye.svg" alt="View">
+                        </button>
+                        <button class="btn-icon" data-action="delete" data-id="${
+                          item.id
+                        }">
+                          <img src="assets/icons/fi-sr-trash.svg" alt="Delete">
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                `;
+              } else {
+                // Render category row
+                return `
+                  <tr>
+                    <td class="product-cell">
+                      <div class="product-info">
+                        <input class="checkbox-id" type="checkbox" data-id="${
+                          item.id
+                        }">
+                        <img src="${item.image}" alt="${
+                  item.name
+                }" class="product-image">
+                        <div>
+                          <div class="product-name">${item.name}</div>
+                          <div class="product-variants">${
+                            item.description || ""
+                          }</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>${item.sold}</td>
+                    <td>${item.stock}</td>
+                    <td>${item.added}</td>
+                    <td>
+                      <div class="action-buttons">
+                        <button class="btn-icon" data-action="edit" data-id="${
+                          item.id
+                        }">
+                          <img src="assets/icons/fi-sr-pencil.svg" alt="Edit">
+                        </button>
+                        <button class="btn-icon" data-action="view" data-id="${
+                          item.id
+                        }">
+                          <img src="assets/icons/fi-sr-eye.svg" alt="View">
+                        </button>
+                        <button class="btn-icon" data-action="delete" data-id="${
+                          item.id
+                        }">
+                          <img src="assets/icons/fi-sr-trash.svg" alt="Delete">
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                `;
+              }
+            })
+            .join("")}
+        </tbody>
+      </table>
+      <div class="pagination-container">
+        ${renderPagination(data, PAGINATION_PAGE)}
       </div>
-    `;
+    </div>
+  `;
 };
 
-function renderPagination(data) {
-  const totalItems = data.products.length;
+function renderPagination(data, PAGINATION_PAGE) {
+  // Sử dụng trực tiếp mảng data
+  const totalItems = data.length;
   const totalPages = Math.ceil(totalItems / PAGINATION_PAGE.ITEMS_PER_PAGE);
   const currentPage = PAGINATION_PAGE.CURRENT_PAGE;
   const startIndex = (currentPage - 1) * PAGINATION_PAGE.ITEMS_PER_PAGE + 1;
@@ -247,25 +204,34 @@ function renderPagination(data) {
   }
 
   return `
-      <div class="pagination-info">
-          Showing ${startIndex}-${endIndex} from ${totalItems}
-      </div>
-      <div class="pagination">
-          <button class="pagination-btn" data-page="prev" ${
-            currentPage === 1 ? "disabled" : ""
-          }>
-              <img class="nav-indicator" src="/assets/icons/fi-rr-caret-left.svg" alt="fi-rr-caret-left.svg">
-          </button>
-          ${pageButtons}
-          <button class="pagination-btn" data-page="next" ${
-            currentPage === totalPages ? "disabled" : ""
-          }>
-              <img class="nav-indicator" src="/assets/icons/fi-sr-caret-right.svg" alt="fi-sr-caret-right.svg">
-          </button>
-      </div>
-    `;
+    <div class="pagination-info">
+      Showing ${startIndex}-${endIndex} from ${totalItems}
+    </div>
+    <div class="pagination">
+      <button class="pagination-btn" data-page="prev" ${
+        currentPage === 1 ? "disabled" : ""
+      }>
+        <img class="nav-indicator" src="assets/icons/fi-rr-caret-left.svg" alt="Previous">
+      </button>
+      ${pageButtons}
+      <button class="pagination-btn" data-page="next" ${
+        currentPage === totalPages ? "disabled" : ""
+      }>
+        <img class="nav-indicator" src="assets/icons/fi-sr-caret-right.svg" alt="Next">
+      </button>
+    </div>
+  `;
 }
-function handlePaginationClick(event) {
+
+// Hàm xử lý sự kiện phân trang
+function handlePaginationClick(
+  event,
+  TABLE_HEADERS,
+  IMAGE_TABLE,
+  PAGINATION_PAGE,
+  data,
+  dataType = "product"
+) {
   const target = event.target;
   if (target.classList.contains("pagination-btn")) {
     const page = target.dataset.page;
@@ -275,22 +241,63 @@ function handlePaginationClick(event) {
         PAGINATION_PAGE.CURRENT_PAGE - 1
       );
     } else if (page === "next") {
+      // Sử dụng trực tiếp mảng data
       const totalPages = Math.ceil(
-        dataProduct.products.length / PAGINATION_PAGE.ITEMS_PER_PAGE
+        data.length / PAGINATION_PAGE.ITEMS_PER_PAGE
       );
       PAGINATION_PAGE.CURRENT_PAGE = Math.min(
         totalPages,
         PAGINATION_PAGE.CURRENT_PAGE + 1
       );
     } else {
-      PAGINATION_PAGE.CURRENT_PAGE = parseInt(page);
+      PAGINATION_PAGE.CURRENT_PAGE = Number.parseInt(page);
     }
     const tableContainer = document.querySelector(".table-container");
-    tableContainer.innerHTML = table();
-    attachPaginationListeners();
+    // Truyền đầy đủ tham số khi gọi table()
+    tableContainer.innerHTML = table(
+      TABLE_HEADERS,
+      IMAGE_TABLE,
+      PAGINATION_PAGE,
+      data,
+      dataType
+    );
+    attachPaginationListeners(
+      TABLE_HEADERS,
+      IMAGE_TABLE,
+      PAGINATION_PAGE,
+      data,
+      dataType
+    );
   }
 }
-export function attachPaginationListeners() {
+
+// Cập nhật hàm attachPaginationListeners để nhận tham số
+export function attachPaginationListeners(
+  TABLE_HEADERS,
+  IMAGE_TABLE,
+  PAGINATION_PAGE,
+  data,
+  dataType = "product"
+) {
   const paginationContainer = document.querySelector(".pagination-container");
-  paginationContainer.addEventListener("click", handlePaginationClick);
+  if (paginationContainer) {
+    // Xóa tất cả event listeners cũ để tránh trùng lặp
+    const newPaginationContainer = paginationContainer.cloneNode(true);
+    paginationContainer.parentNode.replaceChild(
+      newPaginationContainer,
+      paginationContainer
+    );
+
+    // Thêm event listener mới với tham số đầy đủ
+    newPaginationContainer.addEventListener("click", (event) =>
+      handlePaginationClick(
+        event,
+        TABLE_HEADERS,
+        IMAGE_TABLE,
+        PAGINATION_PAGE,
+        data,
+        dataType
+      )
+    );
+  }
 }

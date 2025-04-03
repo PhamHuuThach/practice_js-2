@@ -1,210 +1,258 @@
 @use "../base/" as *;
 @use "../abstracts/" as *;
+
 .product-form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.product-form-left {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.product-form-right {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+// Form Sections
+.form-section {
+  background: $background-primary;
+  border-radius: 12px;
+  padding: 24px;
+
+  .section-header {
     display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: $text-primary;
+    margin: 0 0 24px 0;
+  }
+
+  .status-badge {
+    padding: 4px 12px;
+    background: rgba($warning, 0.1);
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: $warning;
+  }
+}
+
+// Form Groups
+.form-group {
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    color: $text-primary;
+    font-size: 14px;
+    font-weight: 500;
+  }
+}
+
+// Form Controls
+.form-control {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid $border-light;
+  border-radius: 8px;
+  background: $background-primary;
+  color: $text-primary;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+  }
+
+  &::placeholder {
+    color: $text-secondary;
+  }
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+// Input with prefix
+.input-wrapper {
+  position: relative;
+  
+  .input-prefix {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-secondary;
+    z-index: 1;
   }
   
-  .product-form-left {
-    flex: 1;
-    min-width: 0;
+  .form-control {
+    padding-left: 24px;
+  }
+}
+
+// Select dropdown
+.select-wrapper {
+  position: relative;
+  
+  .select-arrow {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
+  }
+  
+  select.form-control {
+    appearance: none;
+    padding-right: 32px;
+    
+    option {
+      color: $text-primary;
+    }
+  }
+}
+
+// Media upload
+.upload-area {
+  border: 2px dashed $border-light;
+  border-radius: 8px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  &:hover {
+    border-color: $primary;
+  }
+  
+  .upload-image {
+    background: $background-lightSlateBlue;
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    
+    .upload-icon {
+      width: 24px;
+      height: 24px;
+      color: $primary;
+    }
+    .upload-icon:hover {
+      scale: 1.5;
+    }
+  }
+  
+  p {
+    color: $text-secondary;
+    margin: 0;
+    font-size: 14px;
+  }
+
+  .custom-file-upload {
+    display: inline-block;
+    padding: 8px 16px;
+    background: $info;
+    color: $background-lightSlateBlue;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+    
+    &:hover {
+      scale: 1.5;
+    }
+  }
+}
+
+.section-content.pricing {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    
+    .form-group:first-child {
+      grid-column: 1 / -1;
+    }
+    
+    .form-group:nth-child(2),
+    .form-group:nth-child(4) {
+      grid-column: 1;
+    }
+    
+    .form-group:nth-child(3),
+    .form-group:nth-child(5) {
+      grid-column: 2;
+    }
+  }
+}
+
+.section-content.inventory {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .product-form-container {
     flex-direction: column;
-    gap: 1.5rem;
   }
   
   .product-form-right {
-    width: 320px;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  // Form Sections
-  .form-section {
-    background: $background-primary;
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 1.5rem;
-    }
-  
-    .section-title {
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: $text-primary;
-      margin-bottom: 1.5rem;
-    }
-  
-    .status-badge {
-      padding: 0.25rem 0.75rem;
-      background: rgba($text-secondary, 0.1);
-      border-radius: 1rem;
-      font-size: 0.75rem;
-      color: $text-secondary;
-    }
-  }
-  
-  // Form Groups
-  .form-group {
-    margin-bottom: 1.25rem;
-  
-    &:last-child {
-      margin-bottom: 0;
-    }
-  
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: $text-secondary;
-      font-size: 0.875rem;
-    }
-  }
-  
-  .form-row {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
- 
-  // Form Controls
-  .form-control {
     width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid $border-light;
-    border-radius: 0.5rem;
-    background: $background-primary;
-    color: $text-primary;
-    font-size: 0.875rem;
-    transition: border-color 0.2s ease;
-  
-    &:focus {
-      outline: none;
-      border-color: $primary;
-    }
-  
-    &::placeholder {
-      color: rgba($text-secondary, 0.7);
-    }
+  }
+}
+
+@include tablet {
+  .form-section {
+    padding: 20px;
   }
   
-  textarea.form-control {
-    resize: vertical;
-    min-height: 175px;
+  .section-content.pricing,
+  .section-content.inventory {
+    grid-template-columns: 1fr;
   }
-  
-  // Input with prefix
-  .input-wrapper {
-    position: relative;
-    
-    &.has-prefix {
-      .form-control {
-        padding-left: 2rem;
-      }
-      
-      .input-prefix {
-        position: absolute;
-        left: 1rem;
-        top: 50%;
-        transform: translateY(-50%);
-        color: $text-secondary;
-      }
-    }
-  }
-  
-  // Select dropdown
-  .select-wrapper {
-    position: relative;
-    
-    .select-arrow {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
-      pointer-events: none;
-    }
-    
-    select {
-      appearance: none;
-      padding-right: 2.5rem;
-    }
-  }
-  
-  // Media upload
-  .upload-area {
-    border: 2px dashed $border-light;
-    border-radius: 0.5rem;
-    padding: 2rem;
-    text-align: center;
-    cursor: pointer;
-    transition: border-color 0.2s ease;
-    min-height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-  
-    &:hover {
-      border-color: $primary;
-    }
-    .upload-image {
-      background: $background-lightSlateBlue;
-      border-radius: 0.5rem;
-      min-width: 40px;
-      min-height: 32px;
-      .upload-icon {
-        
-        margin: 10px auto;
-        color: $primary;
-      }
-    }
-   
-  
-    p {
-      color: $text-secondary;
-      margin-bottom: 1rem;
-      font-size: 0.875rem;
-    }
-  
-    .add-image-btn {
-      background-color: rgba($primary, 0.1);
-      color: $primary;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      font-weight: 500;
-      cursor: pointer;
-      font-size: 0.875rem;
-      
-      &:hover {
-        background-color: rgba($primary, 0.2);
-      }
-    }
-  }
-  
-  // Responsive
-  @media (max-width: 1024px) {
-    .product-form-container {
-      flex-direction: column-reverse;
-    }
-    
-    .product-form-right {
-      width: 100%;
-    }
-  }
-  
- @include tablet {
-    .form-row {
-      grid-template-columns: 1fr;
-    }
-  }
+}
+

@@ -1,4 +1,4 @@
-import { indexView } from "../view/layouts/indexView";
+import { layoutView } from "../view/layouts/rootLayout";
 import { setupSidebar } from "../view/layouts/sidebarView";
 export class Router {
   constructor(routes) {
@@ -13,7 +13,7 @@ export class Router {
     window.addEventListener("hashchange", () => this.handleRouteChange());
     window.addEventListener("load", () => this.handleRouteChange());
     const app = document.querySelector("#app");
-    app.innerHTML = indexView();
+    app.innerHTML = layoutView();
     setupSidebar();
   }
 
@@ -21,17 +21,15 @@ export class Router {
   handleRouteChange() {
     const pathname = window.location.pathname || "/";
     const route = this.routes.find((route) => route.path === pathname); // Tìm route phù hợp
-    console.log(window.location.pathname);
 
     if (route) {
       this.currentRoute = route;
       const targetElement = document.querySelector(route.target);
-      console.log(targetElement);
 
       if (targetElement) {
         route.controller.loadView(route.target); // Hiển thị view tương ứng với target
       } else {
-        console.error(`Target element "${route.target}" not found!`);
+        this.app.innerHTML = "Target element" + route.target + " not found!";
       }
     } else {
       console.error("Route not found!");

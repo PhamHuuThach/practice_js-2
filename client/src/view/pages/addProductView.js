@@ -6,6 +6,7 @@ export class addProductView {
   render(container) {
     container.innerHTML = `
         ${pageHeaderView(
+          PAGE_HEADER_ADD_PRODUCT.TITLE,
           PAGE_HEADER_ADD_PRODUCT.BREADCRUMB_ADD_PRODUCT,
           PAGE_HEADER_ADD_PRODUCT.BUTTON_ACTION_ADD_PRODUCT
         )}
